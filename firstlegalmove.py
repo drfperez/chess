@@ -13,6 +13,9 @@ def fer_moviment_simple(tauler):
     moviments_legals = list(tauler.legal_moves)
     # Triem el primer moviment legal disponible
     moviment = moviments_legals[0]
+    # TAMBE PODEM TRIAR NO EL PRIMER LEGAL SINO UN ALEATORI ENTRE ELS LEGALS
+     # Triem un moviment legal aleatori
+    # moviment = random.choice(moviments_legals)
     # Fem el moviment triat al tauler
     tauler.push(moviment)
 
