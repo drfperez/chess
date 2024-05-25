@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Chess</title>
+    <!-- Include chessboard.js and chess.js from CDN -->
+    <link rel="stylesheet" href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css">
+    <script src="https://unpkg.com/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.12.1/chess.min.js"></script>
+    <style>
+        #board {
+            width: 400px;
+            margin: 20px auto;
+        }
+        .messages {
+            text-align: center;
+            margin-top: 20px;
+        }
+        #game-status {
+            color: green;
+        }
+        #error-message {
+            color: red;
+        }
+        #moves {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <h1>Play Chess</h1>
+    <div id="board"></div>
+    <div class="messages">
+        <div id="game-status"></div>
+        <div id="error-message"></div>
+        <div id="moves"></div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let board, game;
+
+            function initChessboard() {
+                try {
+                    board = Chessboard('board', {
+                        draggable: true,
+                        position: 'start',
+                        pieceTheme: 'img/chesspieces/wikipedia/{piece}.png', // Relative path to the images
+                        onDrop: handleMove,
+                    });
+                    game = new Chess();
+                    updateMoves();
+                } catch (error) {
+                    handleError(error);
+                }
+            }
+
+            function handleMove(source, target) {
+    clearMessages();
+    try {
+        const move = game.move({
+            from: source,
+            to: target,
+            promotion: 'q' // always promote to a queen for simplicity
+        });
+
+        if (move === null) {
+            displayErrorMessage('Invalid move!');
+            return 'snapback';
+        }
+
+        board.position(game.fen());
+        if (game.game_over()) {
+            displayGameStatus('Game over');
+            return;
+        }
+
+        // Check if it's black's turn
+        if (game.turn() === 'b') {
+            const blackMoves = game.moves({ verbose: true });
+            if (blackMoves.length > 0) {
+                const randomIndex = Math.floor(Math.random() * blackMoves.length);
+                const randomBlackMove = blackMoves[randomIndex];
+                game.move(randomBlackMove);
+                board.position(game.fen());
+                if (game.game_over()) {
+                    displayGameStatus('Game over');
+                    return;
+                }
+                updateMoves();
+            } else {
+                displayGameStatus('Black has no legal moves. Game over.');
+            }
+        } else {
+            updateMoves();
+        }
+    } catch (error) {
+        handleError(error);
+    }
+}
+
+
+
+
+
+
+            function updateMoves() {
+                const moves = game.moves({ verbose: true });
+                const legalMoves = moves
+                    .filter(move => {
+                        game.move(move);
+                        const isLegal = !game.in_check();
+                        game.undo();
+                        return isLegal;
+                    })
+                    .map(move => move.san);
+                document.getElementById('moves').innerText = 'Legal moves: ' + legalMoves.join(', ');
+            }
+
+            function displayGameStatus(message) {
+                document.getElementById('game-status').innerText = message;
+            }
+
+            function displayErrorMessage(message) {
+                document.getElementById('error-message').innerText = message;
+            }
+
+            function clearMessages() {
+                document.getElementById('game-status').innerText = '';
+                document.getElementById('error-message').innerText = '';
+                document.getElementById('moves').innerText = '';
+            }
+
+            function handleError(error) {
+                displayErrorMessage('Error: ' + error.message);
+                console.error(error);
+            }
+
+            try {
+                initChessboard();
+            } catch (error) {
+                handleError(error);
+            }
+
+            window.onerror = function (message, source, lineno, colno, error) {
+                handleError(error || new Error(message + ' at ' + source + ':' + lineno + ':' + colno));
+            };
+        });
+    </script>
+</body>
+</html>
