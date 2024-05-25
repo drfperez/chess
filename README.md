@@ -3,4 +3,6 @@ Recorded Chess Player is an online chess player using chess.js and chessboard.js
 
 Python chess game codes are making use of simple AI, allowing first legal move, random legal move or priorizing capturing moves.
 
+https://pompeu.neicitoes.org/random
+
 ![Tauler d'escacs](https://github.com/drfperez/chess/raw/main/chess.jpg)
