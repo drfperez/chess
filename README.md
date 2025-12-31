@@ -1,6 +1,6 @@
 # Chess - Simple Chess Game in a Single HTML Page
 
-A fully functional **chess game** for browsers (mobile and desktop), written in a single HTML file with pure JavaScript. No server or installation required.
+A fully functional **chess game** for browsers (mobile and desktop), written in a single HTML file (lozza.html) with pure JavaScript. No server or installation required.
 
 **Try a similar powerful online chess experience here:** [https://drfperez.github.io/lozza](https://drfperez.github.io/lozza)  
 *(Or simply save the provided code as `index.html` and open it locally)*
