@@ -27,7 +27,7 @@ That's it!
 
 ## Screenshots
 
-![Chess board with mobile controls](https://github.com/drfperez/chess/raw/main/capture1.jpg)
+![Chess board with mobile controls](https://github.com/drfperez/chess/raw/main/captura1.jpg)
 *Compact and touch-friendly interface*
 
 ![Immortal Game with comment](https://github.com/drfperez/chess/raw/main/capture2.jpg)  
