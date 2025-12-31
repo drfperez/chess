@@ -1,100 +1,180 @@
-# Chess - Simple Chess Game in a Single HTML Page
+# ♟️ Chess — Simple Chess Game & Lozza JavaScript Engine
 
-A fully functional **chess game** for browsers (mobile and desktop), written in a single HTML file (lozza.html) with pure JavaScript. No server or installation required.
+A collection of **browser-based chess projects** built with **pure JavaScript**, ranging from a **single-file playable chess game** to **Lozza**, a fully **UCI-compliant JavaScript chess engine with NNUE evaluation**.
 
-**Try this powerful online chess experience here:** [https://drfperez.github.io/lozza](https://drfperez.github.io/lozza)  
-*(Or simply save the provided code as `index.html` and open it locally)*
+All projects run **client-side**, require **no server**, and are designed for **maximum portability**.
 
-## Features
-
-- **Interactive board** with drag-and-drop pieces (powered by [chessboard.js](https://chessboardjs.com/))
-- **Built-in AI engine** with 4 difficulty levels (minimax algorithm with alpha-beta pruning)
-- **Play as white or black**
-- **Flip the board** to view from the opponent's side
-- **Move navigation** through game history (forward/backward, start/end)
-- **Load and save games** in PGN format
-- **Famous example game**: The legendary "Immortal Game" by Anderssen (1851) with move-by-move comments in Catalan
-- **Responsive and mobile-optimized design** (full-screen, large touch-friendly buttons)
-- **Minimal external dependencies** (loaded from CDNs: jQuery, chess.js, chessboard.js)
-
-## How to Use
-
-1. Copy the provided HTML code
-2. Paste it into a new file named `index.html`
-3. Open the file in any modern browser
-
-That's it!
-
-## Screenshots
-
-![Chess board with mobile controls](https://github.com/drfperez/chess/raw/main/captura1.jpg)
-*Compact and touch-friendly interface*
-
-![Immortal Game with comment](https://github.com/drfperez/chess/raw/main/capture2.jpg)  
-*Move-by-move comments for the famous Immortal Game*
-
-## Technologies Used
-
-- [chess.js](https://github.com/jhlywa/chess.js) – Chess rules engine
-- [chessboard.js](https://chessboardjs.com/) – Visual board rendering
-- jQuery (for chessboard.js compatibility)
-- HTML5 + CSS3 + Vanilla JavaScript
-
-## Contributions
-
-Feel free to improve it:
-
-- Add deeper AI (e.g., integrate Stockfish via WebAssembly)
-- Translate comments to other languages
-- Enhance position evaluation (piece-square tables, etc.)
-- Add local two-player mode
-
-Fork the repo, open issues, or send pull requests!
-
-## License
-
-This project is open source under the **MIT License**. Use, modify, and distribute freely.
-# Lozza: A UCI JavaScript Chess Engine with NNUE
-
-**Lozza** is a fully **UCI-compliant chess engine** implemented entirely in **JavaScript**.
-
-## Core Design
-*   Primarily designed for **browser execution** via Web Workers.
-*   Also supports **Node.js** for use with desktop GUIs (e.g., Banksia, Winboard, Arena, CuteChess).
-*   **Single-file** structure (`lozza.js`) uses code folding markers (`/*{{{ */` and `/*}}}*/`) for readability.
-
-## Search & Evaluation
-The engine drives an **alpha-beta search** enhanced with:
-*   Transposition tables
-*   Killer and history heuristics
-*   Internal iterative deepening
-*   Quiescence search with static exchange evaluation (SEE) pruning
-
-Its core strength is a **modern NNUE-based evaluation**, featuring:
-*   A **quantized compact neural network**
-*   **Inlined hex-encoded weights** for efficient incremental updates during move make/unmake.
-*   This NNUE replaced an earlier hand-crafted evaluation derived from Fruit 2.1.
-
-## Release Process
-Release preparation involves:
-1.  Disabling development artifacts (e.g., evaluation randomization, strict mode).
-2.  Setting flags like `NET_LOCAL=1` and inlining network data.
-3.  Ensuring determinism via benchmarks and SPRT validation.
-4.  The `BUILD` constant (e.g., "8") marks production versions.
-
-## Project Status (as of December 2025)
-| Latest Release | Lozza 8 (September 2025) |
-| :--- | :--- |
-| Maintenance | Latest commit November 2025 |
-| GitHub Stats | 52 stars, over 1,270 commits |
-
-This pure-JS approach prioritizes **portability** over raw speed, delivering solid performance for browser-based analysis and casual play.
 ---
-Enjoy the game! ♔ ♚# chess
-Recorded Chess Player is an online chess player using chess.js and chessboard.js libraries capable to play full previously hard coded chess games with controls. See an online working example at my website: https://pompeu.neocities.org/chess/
 
-Python chess game codes are making use of simple AI, allowing first legal move, random legal move or priorizing capturing moves.
+## 🔹 Simple Chess Game (Single HTML File)
 
-https://pompeu.neocities.org/chess/random
+A fully functional **chess game for browsers** (desktop & mobile), implemented in **one HTML file** using vanilla JavaScript.
 
-![Tauler d'escacs](https://github.com/drfperez/chess/raw/main/chess.jpg)
+📍 **Live demo**  
+👉 https://drfperez.github.io/lozza  
+
+📁 Or simply save the file as `index.html` and open it locally.
+
+### ✨ Features
+
+- Interactive chessboard with **drag & drop**
+- **Built-in AI opponent** with 4 difficulty levels  
+  *(minimax + alpha-beta pruning)*
+- Play as **White or Black**
+- **Board flip** support
+- Full **move navigation** (start, end, forward, backward)
+- **PGN load & save**
+- Includes the legendary **Immortal Game (Anderssen, 1851)**  
+  with **move-by-move comments in Catalan**
+- **Mobile-optimized**, full-screen layout
+- Minimal external dependencies (via CDN):
+  - `chess.js`
+  - `chessboard.js`
+  - `jQuery`
+
+---
+
+### 🚀 How to Use
+
+1. Copy the provided HTML source
+2. Save it as `index.html`
+3. Open it in any modern web browser
+
+That’s it — no installation required.
+
+---
+
+### 📸 Screenshots
+
+![Chess board with mobile controls](https://github.com/drfperez/chess/raw/main/captura1.jpg)  
+*Compact, touch-friendly interface*
+
+![Immortal Game with comments](https://github.com/drfperez/chess/raw/main/capture2.jpg)  
+*Annotated historical game*
+
+---
+
+### 🛠 Technologies Used
+
+- [chess.js](https://github.com/jhlywa/chess.js) — Chess rules & legality
+- [chessboard.js](https://chessboardjs.com/) — Board rendering
+- jQuery — Required for chessboard.js
+- HTML5, CSS3, Vanilla JavaScript
+
+---
+
+## 🔹 Lozza — JavaScript UCI Chess Engine with NNUE
+
+**Lozza** is a fully **UCI-compliant chess engine** written entirely in **JavaScript**.
+
+### 🧠 Core Design
+
+- Designed primarily for **browser execution** using **Web Workers**
+- Also runs under **Node.js**
+- Compatible with desktop GUIs:
+  - Arena
+  - CuteChess
+  - WinBoard
+  - Banksia
+- **Single-file engine** (`lozza.js`)
+- Uses code-folding markers for readability
+
+---
+
+### 🔍 Search & Evaluation
+
+Lozza features a modern **alpha-beta search** enhanced with:
+
+- Transposition tables
+- Killer & history heuristics
+- Internal iterative deepening
+- Quiescence search
+- Static Exchange Evaluation (SEE) pruning
+
+#### 🧠 NNUE Evaluation
+
+- Quantized **NNUE neural network**
+- Compact architecture with **hex-encoded inlined weights**
+- Incremental evaluation updates on make/unmake
+- Replaced an earlier handcrafted evaluation (Fruit 2.1-based)
+
+---
+
+### 🏗 Release Process
+
+Production builds include:
+
+1. Disabled development features (randomization, strict checks)
+2. Inlined neural network (`NET_LOCAL=1`)
+3. Deterministic benchmarking & SPRT validation
+4. Version tagging via `BUILD` constant (e.g. `"8"`)
+
+---
+
+### 📊 Project Status (December 2025)
+
+| Category | Status |
+|------|------|
+| Latest Release | **Lozza 8** (September 2025) |
+| Last Commit | November 2025 |
+| GitHub Activity | 1,270+ commits |
+| GitHub Stars | ⭐ 52 |
+
+> Lozza prioritizes **portability and clarity** over raw speed, making it ideal for browser analysis and casual play.
+
+---
+
+## 🔹 Recorded Chess Player
+
+An **online chess player** capable of replaying **pre-recorded chess games** with full controls.
+
+- Built using `chess.js` and `chessboard.js`
+- Designed for educational and historical game playback
+
+🌐 **Live demo**  
+👉 https://pompeu.neocities.org/chess/
+
+---
+
+## 🔹 Python Chess Experiments
+
+A collection of **simple Python chess programs** demonstrating basic AI strategies:
+
+- First legal move
+- Random legal move
+- Capture-prioritized moves
+
+🌐 **Demo**  
+👉 https://pompeu.neocities.org/chess/random
+
+---
+
+### 📷 Screenshot
+
+![Chess board](https://github.com/drfperez/chess/raw/main/chess.jpg)
+
+---
+
+## 🤝 Contributions
+
+Contributions are welcome! Ideas include:
+
+- Integrating **Stockfish (WASM)**
+- Improving NNUE networks
+- Adding multiplayer or local two-player mode
+- Translating annotations
+- Enhancing evaluation heuristics
+
+Feel free to fork, open issues, or submit pull requests.
+
+---
+
+## 📄 License
+
+This project is released under the **MIT License**.
+
+You are free to **use, modify, and distribute** this software.
+
+---
+
+♔ Enjoy the game and the engine! ♚
