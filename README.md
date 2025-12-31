@@ -54,7 +54,41 @@ Fork the repo, open issues, or send pull requests!
 ## License
 
 This project is open source under the **MIT License**. Use, modify, and distribute freely.
+# Lozza: A UCI JavaScript Chess Engine with NNUE
 
+**Lozza** is a fully **UCI-compliant chess engine** implemented entirely in **JavaScript**.
+
+## Core Design
+*   Primarily designed for **browser execution** via Web Workers.
+*   Also supports **Node.js** for use with desktop GUIs (e.g., Banksia, Winboard, Arena, CuteChess).
+*   **Single-file** structure (`lozza.js`) uses code folding markers (`/*{{{ */` and `/*}}}*/`) for readability.
+
+## Search & Evaluation
+The engine drives an **alpha-beta search** enhanced with:
+*   Transposition tables
+*   Killer and history heuristics
+*   Internal iterative deepening
+*   Quiescence search with static exchange evaluation (SEE) pruning
+
+Its core strength is a **modern NNUE-based evaluation**, featuring:
+*   A **quantized compact neural network**
+*   **Inlined hex-encoded weights** for efficient incremental updates during move make/unmake.
+*   This NNUE replaced an earlier hand-crafted evaluation derived from Fruit 2.1.
+
+## Release Process
+Release preparation involves:
+1.  Disabling development artifacts (e.g., evaluation randomization, strict mode).
+2.  Setting flags like `NET_LOCAL=1` and inlining network data.
+3.  Ensuring determinism via benchmarks and SPRT validation.
+4.  The `BUILD` constant (e.g., "8") marks production versions.
+
+## Project Status (as of December 2025)
+| Latest Release | Lozza 8 (September 2025) |
+| :--- | :--- |
+| Maintenance | Latest commit November 2025 |
+| GitHub Stats | 52 stars, over 1,270 commits |
+
+This pure-JS approach prioritizes **portability** over raw speed, delivering solid performance for browser-based analysis and casual play.
 ---
 Enjoy the game! ♔ ♚# chess
 Recorded Chess Player is an online chess player using chess.js and chessboard.js libraries capable to play full previously hard coded chess games with controls. See an online working example at my website: https://pompeu.neocities.org/chess/
