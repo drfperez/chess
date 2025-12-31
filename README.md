@@ -27,10 +27,10 @@ That's it!
 
 ## Screenshots
 
-![Chess board with mobile controls](https://via.placeholder.com/800x600.png?text=Chess+Board+-+Mobile+View)  
+![Chess board with mobile controls](https://github.com/drfperez/chess/raw/main/capture1.jpg)
 *Compact and touch-friendly interface*
 
-![Immortal Game with comment](https://via.placeholder.com/800x600.png?text=Immortal+Game+with+Catalan+Comment)  
+![Immortal Game with comment](https://github.com/drfperez/chess/raw/main/capture2.jpg)  
 *Move-by-move comments for the famous Immortal Game*
 
 ## Technologies Used
