@@ -37,7 +37,7 @@ A fully functional **chess game for browsers** (desktop & mobile), implemented i
 
 ### 🚀 How to Use
 
-1. Copy the provided HTML source: lozza.html and do not forget to copy also lozza.js
+1. Copy the provided HTML source: `lozza.html` and do not forget to copy also `lozza.js`
 2. Save it as `index.html`
 3. Open it in any modern web browser
 
