@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>Stockfish 17.1 Fix - Neocities</title>
+    <link rel="stylesheet" href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css">
+    <style>
+        body { background: #1a1a1a; color: #eee; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+        #board { width: 400px; max-width: 90vw; border: 3px solid #333; }
+        .info { width: 400px; background: #222; padding: 15px; border-radius: 0 0 8px 8px; box-sizing: border-box; }
+        .status-box { color: #f1c40f; text-align: center; font-weight: bold; margin-bottom: 10px; }
+        .error-log { color: #ff4d4d; font-size: 12px; border-top: 1px solid #444; margin-top: 10px; padding-top: 10px; display: none; }
+        .debug-box { font-family: monospace; font-size: 10px; color: #666; height: 40px; overflow: hidden; margin-top: 5px; }
+    </style>
+</head>
+<body>
+
+    <div id="board"></div>
+    <div class="info">
+        <div id="status" class="status-box">Inicialitzant motor (Stockfish 17.1)...</div>
+        <div class="debug-box" id="debug">Iniciant log...</div>
+        
+        <div id="error-display" class="error-log"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+    <script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"></script>
+
+    <script>
+        const game = new Chess();
+        const statusEl = document.getElementById('status');
+        const errorEl = document.getElementById('error-display');
+        const debugEl = document.getElementById('debug');
+
+        function showError(msg) {
+            errorEl.innerText = "⚠️ ERROR: " + msg;
+            errorEl.style.display = 'block';
+        }
+
+        let stockfish;
+
+        // --- Solució definitiva per Stockfish 17.1 a Neocities (sense CORS ni 403) ---
+        // Utilitzem la variant "lite" de nmrugg/stockfish.js via jsDelivr
+        // Aquesta versió carrega el .wasm inline (sense necessitar CORS)
+        const workerUrl = 'https://cdn.jsdelivr.net/npm/stockfish@17.1.0/src/stockfish-nnue-17.1-lite.js';
+        
+        fetch(workerUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('HTTP ' + response.status + ' - Possiblement bloqueig temporal del CDN');
+                }
+                return response.text();
+            })
+            .then(code => {
+                const blob = new Blob([code], { type: 'application/javascript' });
+                stockfish = new Worker(URL.createObjectURL(blob));
+                setupEngine();
+            })
+            .catch(err => {
+                showError("No s'ha pogut carregar el motor: " + err.message);
+                console.error(err);
+            });
+
+        function setupEngine() {
+            stockfish.onmessage = (e) => {
+                const line = e.data;
+                debugEl.innerText = "Últim: " + line.substring(0, 80);
+                
+                if (line === 'readyok') {
+                    statusEl.innerText = "Motor llest (Stockfish 17.1 lite) - Juga amb blanques";
+                } else if (line.startsWith('bestmove')) {
+                    const parts = line.split(' ');
+                    const move = parts[1];
+                    if (move && move !== '(none)') {
+                        const promotion = move.length > 4 ? move[4] : 'q';
+                        game.move({ from: move.substring(0,2), to: move.substring(2,4), promotion: promotion });
+                        board.position(game.fen());
+                        statusEl.innerText = "Teu torn";
+                    }
+                }
+            };
+
+            stockfish.postMessage('uci');
+            stockfish.postMessage('isready');
+            stockfish.postMessage('ucinewgame');
+        }
+
+        function onDrop(source, target) {
+            const move = game.move({ from: source, to: target, promotion: 'q' });
+            if (move === null) return 'snapback';
+
+            statusEl.innerText = "Stockfish pensant...";
+            
+            if (stockfish) {
+                stockfish.postMessage('position fen ' + game.fen());
+                stockfish.postMessage('go depth 15');
+            } else {
+                showError("Motor no carregat.");
+            }
+        }
+
+        const board = ChessBoard('board', {
+            draggable: true,
+            position: 'start',
+            pieceTheme: 'https://chessboardjs.com/img/chesspieces/wikipedia/{piece}.png',
+            onDrop: onDrop,
+            onSnapEnd: () => board.position(game.fen())
+        });
+    </script>
+</body>
+</html>
