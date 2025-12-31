@@ -28,7 +28,6 @@ A fully functional **chess game for browsers** (desktop & mobile), implemented i
   with **move-by-move comments in Catalan**
 - **Mobile-optimized**, full-screen layout
 - Minimal external dependencies (via CDN):
-  - `lozza.js`
   - `chess.js`
   - `chessboard.js`
   - `jQuery`
