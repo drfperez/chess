@@ -13,7 +13,7 @@ A fully functional **chess game for browsers** (desktop & mobile), implemented i
 📍 **Live demo**  
 👉 https://drfperez.github.io/lozza  
 
-📁 Or simply save the file as `index.html`, add lozza.js,  and then open it locally.
+📁 Or simply save the file as `index.html`, add `lozza.js`,  and then open it locally.
 
 ### ✨ Features
 
