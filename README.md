@@ -137,5 +137,4 @@ You are free to use, modify, and distribute this project.
 
 - [`chess.js`](https://github.com/jhlywa/chess.js)
 - [`chessboard.js`](https://github.com/oakmac/chessboardjs)
-- 
 
