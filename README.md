@@ -18,4 +18,4 @@ The application is optimized for both mobile and desktop devices, with a dark-th
 - **Navigation Controls:** Go to start, previous, next, or end of the game.
 
 ## Installation
-1. Copy the file:lozza.html
+1. Copy the file: stockfish.html
