@@ -24,6 +24,10 @@ Key highlights:
 - **Info Modal**: Bilingual guide (Catalan/English) on controls and features.
 - **No Dependencies**: Runs in any modern browser; Stockfish loaded dynamically.
 
+## Demo
+
+A demo is available at `https://drfperez.github.io/chess/stockfish/`.
+
 ## Installation
 
 1. Download the single `stockfish/index.html` file from this repository.
