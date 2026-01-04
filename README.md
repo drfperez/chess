@@ -52,4 +52,4 @@ A demo is available at [https://drfperez.github.io/chess/stockfish/](https://drf
 
 ## License
 
-MIT License. Free to use, modify, and distribute. See [LICENSE](LICENSE) for details.
+MIT License. Free to use, modify, and distribute.
