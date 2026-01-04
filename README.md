@@ -26,7 +26,7 @@ Key highlights:
 
 ## Demo
 
-A demo is available at `https://drfperez.github.io/chess/stockfish/`.
+A demo is available at [https://drfperez.github.io/chess/stockfish/](https://drfperez.github.io/chess/stockfish/).
 
 ## Installation
 
