@@ -26,7 +26,7 @@ Key highlights:
 
 ## Installation
 
-1. Download the single `escacs.html` file from this repository.
+1. Download the single `stockfish/index.html` file from this repository.
 2. Open it directly in your web browser (e.g., Chrome, Firefox) via `file://` or host it locally for full functionality (e.g., using `python3 -m http.server` to avoid CORS issues with Stockfish CDN).
 3. Play instantly—no installation or servers needed!
 
