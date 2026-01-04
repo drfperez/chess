@@ -32,7 +32,7 @@ Key highlights:
 
 ## Usage
 
-- Open `escacs.html` in a browser.
+- Open the previous file and name it `escacs.html` in a browser.
 - Select side (♔ White / ♚ Black) and difficulty (1-6).
 - Drag pieces to move (touch on mobile).
 - Use top buttons: Info (ℹ️), Flip (↻), Undo (↶), New Game (↺).
