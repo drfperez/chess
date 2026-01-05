@@ -1,55 +1,171 @@
-# Escacs ♔ ♚
+♟️ Chess Game
 
-An interactive, single-file web application for playing chess against an AI. Powered by Stockfish for expert-level play and a custom minimax algorithm for easier difficulties. Built entirely with HTML, CSS, and JavaScript—no server required. Enjoy a modern, responsive interface optimized for mobile and desktop.
+A modern, feature-rich chess game built with HTML5, CSS3, and JavaScript. Play against an AI opponent with adjustable difficulty, or replay famous historical games. Supports both Standard Chess and Fischer Random (Chess960).
 
-## Description
+🎮 Live Demo
 
-Escacs (Catalan for "chess") lets you challenge a sophisticated AI in a sleek, dark-themed environment. Choose your side (white or black), adjust difficulty from beginner to grandmaster, and explore features like move navigation, PGN file handling, and annotated historical games. The app supports touch interactions for mobile play and includes bilingual (Catalan/English) instructions.
+Play Now: https://drfperez.github.io/chess/stockfish/
 
-Key highlights:
-- AI levels 1-5 use an optimized minimax with alpha-beta pruning and quiescence search.
-- Level 6 integrates Stockfish (v10) via Web Worker for world-class strength.
-- Fully offline-capable after loading (Stockfish fetched from CDN).
+✨ Features
 
-## Features
+🏆 Game Variants
 
-- **AI Opponent**: 6 difficulty levels (1-5: Custom JS AI; 6: Full Stockfish engine).
-- **Game Controls**: Flip board, undo moves, start new game, save/load PGN files.
-- **Move Navigation**: Jump to start/previous/next/end; displays move number and SAN notation.
-- **Pawn Promotion**: Interactive modal to choose Queen, Rook, Bishop, or Knight.
-- **Historical Demo**: Load the "Immortal Game" (Anderssen vs. Kieseritzky, 1851) with step-by-step comments.
-- **Status Updates**: Real-time feedback on check, checkmate, draw, or thinking status.
-- **Engine Indicator**: Shows active engine (Stockfish or local minimax).
-- **Responsive UI**: Touch-friendly for mobile; adapts to screen size/orientation.
-- **Info Modal**: Bilingual guide (Catalan/English) on controls and features.
-- **No Dependencies**: Runs in any modern browser; Stockfish loaded dynamically.
+· Standard Chess - Traditional chess with classical opening theory
+· Fischer Random (Chess960) - Random starting positions with 960 possible arrangements
 
-## Demo
+🤖 AI Opponent
 
-A demo is available at [https://drfperez.github.io/chess/stockfish/](https://drfperez.github.io/chess/stockfish/).
+· 6 Difficulty Levels - From beginner to expert
+· Levels 1-5 - Optimized minimax algorithm with alpha-beta pruning
+· Level 6 - Full Stockfish integration (world's strongest chess engine)
 
-## Installation
+🎯 Game Features
 
-1. Download the single `stockfish/index.html` file from this repository.
-2. Open it directly in your web browser (e.g., Chrome, Firefox) via `file://` or host it locally for full functionality (e.g., using `python3 -m http.server` to avoid CORS issues with Stockfish CDN).
-3. Play instantly—no installation or servers needed!
+· Interactive Board - Drag and drop pieces
+· Smart Promotion - Choose promotion piece when pawn reaches the end
+· Move History - Navigate through game history
+· Save/Load Games - PGN file support
+· Board Orientation - Flip board perspective
+· Responsive Design - Works on desktop, tablet, and mobile
 
-## Usage
+📊 Game Information
 
-- Open the previous file and name it `escacs.html` in a browser.
-- Select side (♔ White / ♚ Black) and difficulty (1-6).
-- Drag pieces to move (touch on mobile).
-- Use top buttons: Info (ℹ️), Flip (↻), Undo (↶), New Game (↺).
-- Bottom controls: Save (💾), Load (📂), Immortal Game (★), Navigation (⏮ ◀ ▶ ⏭).
-- For level 6, ensure internet for initial Stockfish load (caches afterward).
+· Live Status Display - Shows current game state
+· Move Counter - Tracks move numbers
+· Check/Checkmate Detection - Visual and text indicators
+· Draw Recognition - Automatically detects stalemate and other draws
 
-## Credits
+🎮 How to Play
 
-- [chess.js](https://github.com/jhlywa/chess.js) for game logic.
-- [chessboard.js](https://chessboardjs.com) for board rendering.
-- [Stockfish.js](https://github.com/nmrugg/stockfish.js) for AI engine.
-- Inspired by open-source chess projects.
+Quick Start
 
-## License
+1. Choose your side (White or Black)
+2. Select difficulty level (1-6)
+3. Choose game variant (Standard or Fischer Random)
+4. Drag pieces to make moves
+5. When pawn reaches the end, select promotion piece
 
-MIT License. Free to use, modify, and distribute.
+Controls
+
+Top Controls:
+
+· ℹ️ Game information and instructions
+· ♔/♚ Choose your side (White/Black)
+· 1-6 Difficulty level selector
+· S/F Game variant selector (Standard/Fischer Random)
+· ↻ Flip board orientation
+· ↶ Undo last move
+· ↺ Start new game
+
+Bottom Controls:
+
+· 💾 Save game as PGN file
+· 📂 Load saved PGN game
+· ★ Load the "Immortal Game" with commentary
+· ⏮◀▶⏭ Navigate through move history
+
+🔧 Technical Details
+
+Built With
+
+· HTML5 - Semantic markup and structure
+· CSS3 - Responsive design with Flexbox/Grid
+· JavaScript (ES6+) - Game logic and interactivity
+· chess.js - Chess move generation and validation
+· chessboard.js - Interactive chess board UI
+· Stockfish.js - World-class chess engine integration
+
+Chess960 (Fischer Random) Rules
+
+The game implements proper Chess960 rules:
+
+1. Two bishops must be on opposite-colored squares
+2. The king must be between the two rooks
+3. 960 possible starting positions
+4. Castling rules adapt to the random setup
+5. All standard chess rules apply after setup
+
+Performance Features
+
+· Optimized minimax algorithm with alpha-beta pruning
+· Quiescence search for stable positions
+· Move ordering for better pruning
+· Responsive design for all screen sizes
+· Touch-friendly interface for mobile devices
+
+📁 Installation & Local Setup
+
+Option 1: Direct Browser
+
+Simply open the index.html file in any modern web browser.
+
+Option 2: Local Server
+
+For better performance:
+
+```bash
+# Using Python
+python -m http.server 8000
+
+# Using Node.js with http-server
+npx http-server
+
+# Using PHP
+php -S localhost:8000
+```
+
+Then visit http://localhost:8000 in your browser.
+
+🌐 Browser Compatibility
+
+Browser Version Status
+Chrome 60+ Full Support
+Firefox 55+ Full Support
+Safari 11+ Full Support
+Edge 80+ Full Support
+Opera 50+ Full Support
+
+Mobile Support: Works on iOS Safari 11+, Android Chrome 60+
+
+🔗 Dependencies
+
+All dependencies are loaded from CDN:
+
+```html
+<!-- CSS -->
+<link rel="stylesheet" href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css">
+
+<!-- JavaScript -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.12.0/chess.min.js"></script>
+<script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"></script>
+```
+
+⚠️ Known Issues & Limitations
+
+1. Stockfish Worker: The Stockfish engine loads from CDN and may be blocked by some ad blockers
+2. Offline Play: AI levels 1-5 work offline; level 6 requires internet for Stockfish
+3. File Saving: PGN files are saved as downloads; ensure browser allows downloads
+4. Large Games: Games with 1000+ moves may experience performance issues
+
+🚀 Future Enhancements
+
+· Add time controls (bullet, blitz, classical)
+· Implement PGN game database
+· Add opening book and position analysis
+· Create multiplayer (PvP) mode
+· Add move hints and suggestions
+· Implement position evaluation graphs
+· Add chess puzzles and training mode
+
+🙏 Acknowledgements
+
+· chess.js - Chess logic library by Jeff Hlywa
+· chessboard.js - Chess board UI library by Chris Oakman
+· Stockfish - Open-source chess engine by the Stockfish team
+· The Immortal Game - Historical game between Adolf Anderssen and Lionel Kieseritzky (1851)
+· Bobby Fischer - For inventing Fischer Random Chess (Chess960)
+
+📄 License
+
+This project is licensed under the MIT License.
