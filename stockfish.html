@@ -1,5 +1,6 @@
+
 <!DOCTYPE html>
-<html lang="ca">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -490,18 +491,22 @@
         <!-- Top Bar - NEW LAYOUT -->
         <div class="top-bar">
             <div class="top-left-controls">
-                <button class="icon-btn info-btn" id="info-btn" title="Informació del joc / Game info">ℹ️</button>
-                <select id="side-select" title="Costat">
+                <button class="icon-btn info-btn" id="info-btn" title="Game Information">ℹ️</button>
+                <select id="side-select" title="Side">
                     <option value="w">♔</option>
                     <option value="b">♚</option>
                 </select>
-                <select id="difficulty-select" title="Dificultat">
+                <select id="difficulty-select" title="Difficulty">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3" selected>3</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
                     <option value="6">6</option>
+                </select>
+                <select id="variant-select" title="Variant: S=Standard, F=Fischer Random">
+                    <option value="standard" selected>S</option>
+                    <option value="960">F</option>
                 </select>
             </div>
             
@@ -510,9 +515,9 @@
             </div>
             
             <div class="top-right-controls">
-                <button class="icon-btn" id="flip-btn" title="Girar tauler">↻</button>
-                <button class="icon-btn" id="undo-btn" title="Desfer moviment">↶</button>
-                <button class="icon-btn" id="new-game-btn" title="Nova partida">↺</button>
+                <button class="icon-btn" id="flip-btn" title="Flip Board">↻</button>
+                <button class="icon-btn" id="undo-btn" title="Undo Move">↶</button>
+                <button class="icon-btn" id="new-game-btn" title="New Game">↺</button>
             </div>
         </div>
 
@@ -523,24 +528,24 @@
         <div class="panel">
             <!-- First row: File operations and special game -->
             <div class="control-row">
-                <button class="icon-btn" id="save-pgn-btn" title="Desar partida">💾</button>
-                <label class="file-label" title="Carregar partida">📂
+                <button class="icon-btn" id="save-pgn-btn" title="Save Game">💾</button>
+                <label class="file-label" title="Load Game">📂
                     <input type="file" id="load-pgn-file" accept=".pgn,text/plain">
                 </label>
-                <button class="icon-btn" id="load-example-btn" title="Partida Immortal">★</button>
+                <button class="icon-btn" id="load-example-btn" title="Immortal Game">★</button>
             </div>
 
             <!-- Second row: Navigation controls -->
             <div class="nav-row">
-                <button class="nav-btn" id="start-btn" title="Anar a l'inici">⏮</button>
-                <button class="nav-btn" id="prev-btn" title="Moviment anterior">◀</button>
+                <button class="nav-btn" id="start-btn" title="Go to Start">⏮</button>
+                <button class="nav-btn" id="prev-btn" title="Previous Move">◀</button>
                 <span id="move-number" style="min-width:60px; color:#2ecc71; font-weight:bold; font-size:18px;">0</span>
-                <button class="nav-btn" id="next-btn" title="Següent moviment">▶</button>
-                <button class="nav-btn" id="end-btn" title="Anar al final">⏭</button>
+                <button class="nav-btn" id="next-btn" title="Next Move">▶</button>
+                <button class="nav-btn" id="end-btn" title="Go to End">⏭</button>
             </div>
 
             <!-- Status display -->
-            <div id="status" class="status">Prem ↺ per començar una nova partida</div>
+            <div id="status" class="status">Press ↺ to start a new game</div>
         </div>
     </div>
 
@@ -558,44 +563,12 @@
     <div id="info-modal">
         <div class="modal-content">
             <div class="modal-header">
-                <div class="modal-title">ℹ️ Informació del joc</div>
+                <div class="modal-title">ℹ️ Game Information</div>
                 <button class="close-btn" id="close-modal">×</button>
             </div>
             
             <div class="language-section">
-                <div class="language-title">Català</div>
-                
-                <h3>🎮 Com jugar:</h3>
-                <ul>
-                    <li><strong>Selecciona el teu costat:</strong> ♔ (Blanques) o ♚ (Negres)</li>
-                    <li><strong>Ajusta la dificultat:</strong> Del nivell 1 (fàcil) al 6 (Stockfish expert)</li>
-                    <li><strong>Fes moviments:</strong> Arrossega les peces per moure-les</li>
-                    <li><strong>Promoció de peons:</strong> Quan un peó arriba al final, tria a quina peça promociona</li>
-                </ul>
-                
-                <h3>🔄 Controls superiors:</h3>
-                <ul>
-                    <li><strong>ℹ️</strong> Informació del joc</li>
-                    <li><strong>↻</strong> Gira el tauler</li>
-                    <li><strong>↶</strong> Desfés moviment</li>
-                    <li><strong>↺</strong> Nova partida</li>
-                </ul>
-                
-                <h3>💾 Controls inferiors:</h3>
-                <ul>
-                    <li><strong>💾</strong> Desa la partida (PNG)</li>
-                    <li><strong>📂</strong> Carrega partida desada</li>
-                    <li><strong>★</strong> Partida Immortal amb comentaris</li>
-                    <li><strong>⏮ ◀ ▶ ⏭</strong> Navega pels moviments</li>
-                </ul>
-                
-                <h3>🤖 Motor d'escacs:</h3>
-                <p>Nivells 1-5: Algorisme minimax optimitzat<br>
-                Nivell 6: Stockfish complet (motor més fort del món)</p>
-            </div>
-            
-            <div class="language-section">
-                <div class="language-title">English</div>
+                <div class="language-title">Game Features</div>
                 
                 <h3>🎮 How to play:</h3>
                 <ul>
@@ -621,6 +594,19 @@
                     <li><strong>⏮ ◀ ▶ ⏭</strong> Navigate through moves</li>
                 </ul>
                 
+                <h3>🏆 Chess Variants:</h3>
+                <ul>
+                    <li><strong>Standard (S):</strong> Traditional chess with standard starting position</li>
+                    <li><strong>Fischer Random (F):</strong> Also known as Chess960. The back rank pieces are randomly arranged following specific rules:</li>
+                    <ul>
+                        <li>Two bishops must be on opposite-colored squares</li>
+                        <li>The king must be between the two rooks</li>
+                        <li>There are 960 possible starting positions</li>
+                        <li>Castling rules adapt to the random setup</li>
+                        <li>Eliminates opening theory memorization</li>
+                    </ul>
+                </ul>
+                
                 <h3>🤖 Chess engine:</h3>
                 <p>Levels 1-5: Optimized minimax algorithm<br>
                 Level 6: Full Stockfish (world's strongest engine)</p>
@@ -628,13 +614,14 @@
             
             <div class="credits">
                 ♟️ Chess game built with chess.js, chessboard.js and Stockfish<br>
-                📱 Optimized for mobile and desktop
+                📱 Optimized for mobile and desktop<br>
+                ⚡ Supports both Standard Chess and Fischer Random (Chess960)
             </div>
         </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.12.0/chess.min.js"></script>
     <script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"></script>
 
     <script>
@@ -652,53 +639,82 @@
         const pieceValues = { p: 100, n: 320, b: 330, r: 500, q: 900, k: 20000 };
 
         const immortalComments = [
-            "Posició inicial. Les blanques comencen.",
-            "1.e4 – Obertura estàndard.",
-            "1...e5 – Resposta simètrica.",
-            "2.f4 – Gambit de rei! Anderssen ofereix un peó per atac ràpid.",
-            "2...exf4 – Kieseritzky accepta el gambit.",
-            "3.Bc4 – Desenvolupament ràpid apuntant a f7.",
-            "3...Qh4+ – Xeic agressiu molt aviat.",
-            "4.Kf1 – El rei es mou per no perdre temps.",
-            "4...b5!? – Contraatac arriscat oferint un peó.",
-            "5.Bxb5 – Anderssen accepta i guanya material.",
-            "5...Nf6 – Desenvolupa i amenaça e4.",
-            "6.Nf3 – Ataca la dama negra.",
-            "6...Qh6 – La dama es retira.",
-            "7.d3 – Protegeix el peó central.",
-            "7...Nh5 – Amenaça el cavall blanc.",
-            "8.Nh4 – Nova amenaça a la dama.",
+            "Initial position. White to move.",
+            "1.e4 – Standard opening move.",
+            "1...e5 – Symmetrical response.",
+            "2.f4 – King's Gambit! Anderssen offers a pawn for rapid attack.",
+            "2...exf4 – Kieseritzky accepts the gambit.",
+            "3.Bc4 – Rapid development targeting f7.",
+            "3...Qh4+ – Aggressive early check.",
+            "4.Kf1 – The king moves to avoid losing tempo.",
+            "4...b5!? – Risky counterattack offering a pawn.",
+            "5.Bxb5 – Anderssen accepts and gains material.",
+            "5...Nf6 – Develops and threatens e4.",
+            "6.Nf3 – Attacks the black queen.",
+            "6...Qh6 – Queen retreats.",
+            "7.d3 – Protects the central pawn.",
+            "7...Nh5 – Threatens the white knight.",
+            "8.Nh4 – New threat to the queen.",
             "8...Qg5",
-            "9.Nf5 – Cavall al centre.",
-            "9...c6 – Ataca l'alfil blanc.",
-            "10.g4!? – Sacrifici espectacular: ofereix una torre!",
+            "9.Nf5 – Knight to the center.",
+            "9...c6 – Attacks the white bishop.",
+            "10.g4!? – Spectacular sacrifice: offers a rook!",
             "10...Nf6",
-            "11.Rg1 – La torre es posa en joc i es continua oferint.",
-            "11...cxb5 – Acceptat el sacrifici.",
-            "12.h4 – Atac directe a la dama.",
+            "11.Rg1 – The rook enters the game and continues to be offered.",
+            "11...cxb5 – Accepts the sacrifice.",
+            "12.h4 – Direct attack on the queen.",
             "12...Qg6",
-            "13.h5 – Força la dama a moure's de nou.",
+            "13.h5 – Forces the queen to move again.",
             "13...Qg5",
-            "14.Qf3 – Desenvolupa la dama amb amenaça.",
-            "14...Ng8 – Defensa passiva.",
-            "15.Bxf4 – Recupera el peó amb bon desenvolupament.",
+            "14.Qf3 – Develops the queen with threat.",
+            "14...Ng8 – Passive defense.",
+            "15.Bxf4 – Recovers the pawn with good development.",
             "15...Qf6",
-            "16.Nc3 – L'altre cavall entra en joc.",
+            "16.Nc3 – The other knight enters the game.",
             "16...Bc5",
-            "17.Nd5!? – Sacrifici de cavall brillant.",
-            "17...Qxb2 – Acceptat.",
-            "18.Bd6! – Sacrifici de les dues torres!",
+            "17.Nd5!? – Brilliant knight sacrifice.",
+            "17...Qxb2 – Accepted.",
+            "18.Bd6! – Sacrifice of both rooks!",
             "18...Bxg1",
-            "19.e5 – Obra línies centrals.",
+            "19.e5 – Opens central lines.",
             "19...Qxa1+",
-            "20.Ke2 – El rei camina cap al centre sense por.",
+            "20.Ke2 – The king walks to the center without fear.",
             "20...Na6",
-            "21.Nxg7+! – Xeic descobert amb el cavall.",
+            "21.Nxg7+! – Discovered check with the knight.",
             "21...Kd8",
-            "22.Qf6+! – Sacrifici de dama!",
+            "22.Qf6+! – Queen sacrifice!",
             "22...Nxf6",
-            "23.Be7# – Mat immortal! Una de les partides més belles de la història."
+            "23.Be7# – Immortal mate! One of the most beautiful games in history."
         ];
+
+        function generateChess960FEN() {
+            const lightSquares = [1, 3, 5, 7];
+            const darkSquares = [0, 2, 4, 6];
+            let backRank = Array(8).fill('');
+            backRank[lightSquares[Math.floor(Math.random() * 4)]] = 'B';
+            backRank[darkSquares[Math.floor(Math.random() * 4)]] = 'B';
+            let remaining = [];
+            for (let i = 0; i < 8; i++) {
+                if (backRank[i] === '') remaining.push(i);
+            }
+            let idx = Math.floor(Math.random() * remaining.length);
+            backRank[remaining[idx]] = 'Q';
+            remaining.splice(idx, 1);
+            idx = Math.floor(Math.random() * remaining.length);
+            backRank[remaining[idx]] = 'N';
+            remaining.splice(idx, 1);
+            idx = Math.floor(Math.random() * remaining.length);
+            backRank[remaining[idx]] = 'N';
+            remaining.splice(idx, 1);
+            remaining.sort((a, b) => a - b);
+            backRank[remaining[0]] = 'R';
+            backRank[remaining[1]] = 'K';
+            backRank[remaining[2]] = 'R';
+            const whiteBack = backRank.join('');
+            const blackBack = whiteBack.toLowerCase();
+            const fen = `${blackBack}/pppppppp/8/8/8/8/PPPPPPPP/${whiteBack} w KQkq - 0 1`;
+            return fen;
+        }
 
         function initEngine() {
             const workerUrl = 'https://cdnjs.cloudflare.com/ajax/libs/stockfish.js/10.0.2/stockfish.js';
@@ -710,8 +726,8 @@
                     setupEngine();
                 })
                 .catch(err => {
-                    console.error("No s'ha pogut descarregar el motor: " + err);
-                    document.getElementById('engine-status').innerText = "Motor: Local";
+                    console.error("Could not download engine: " + err);
+                    document.getElementById('engine-status').innerText = "Engine: Local";
                 });
         }
 
@@ -739,6 +755,7 @@
             };
 
             stockfish.postMessage('uci');
+            stockfish.postMessage('setoption name UCI_Chess960 value true');
             stockfish.postMessage('isready');
             document.getElementById('engine-status').innerText = "Stockfish";
         }
@@ -758,7 +775,7 @@
 
         function updateStatus() {
             if (thinking) {
-                document.getElementById('status').innerText = "Pensant...";
+                document.getElementById('status').innerText = "Thinking...";
                 return;
             }
 
@@ -775,16 +792,16 @@
             }
 
             if (game.in_checkmate()) {
-                const winner = game.turn() === 'w' ? 'Negres' : 'Blanques';
-                document.getElementById('status').innerText = `Mat! ${winner} guanyen`;
+                const winner = game.turn() === 'w' ? 'Black' : 'White';
+                document.getElementById('status').innerText = `Checkmate! ${winner} wins`;
             } else if (game.in_draw()) {
-                document.getElementById('status').innerText = "Taules";
+                document.getElementById('status').innerText = "Draw";
             } else if (game.in_check()) {
-                document.getElementById('status').innerText = "Escac!";
+                document.getElementById('status').innerText = "Check!";
             } else if (game.turn() === playerSide) {
-                document.getElementById('status').innerText = "El teu torn";
+                document.getElementById('status').innerText = "Your turn";
             } else {
-                document.getElementById('status').innerText = "Torn de la IA";
+                document.getElementById('status').innerText = "AI's turn";
             }
         }
 
@@ -956,7 +973,7 @@
                 } else {
                     thinking = false;
                     document.body.classList.remove('thinking');
-                    document.getElementById('status').innerText = "Error: Motor Stockfish no inicialitzat.";
+                    document.getElementById('status').innerText = "Error: Stockfish engine not initialized.";
                 }
             }
         }
@@ -1008,7 +1025,16 @@
         }
 
         function startNewGame() {
-            game = new Chess();
+            const variant = document.getElementById('variant-select').value;
+            let fen;
+            if (variant === '960') {
+                fen = generateChess960FEN();
+                document.querySelector('.title').innerText = '♔ PLAY 960 ♚';
+            } else {
+                fen = undefined;
+                document.querySelector('.title').innerText = '♔ PLAY CHESS ♚';
+            }
+            game = new Chess(fen);
             history = [game.fen()];
             currentIndex = 0;
             isImmortalGame = false;
@@ -1044,7 +1070,7 @@
         });
 
         document.getElementById('load-example-btn').addEventListener('click', () => {
-            const pgn = `[Event "La Partida Immortal"]
+            const pgn = `[Event "The Immortal Game"]
 [Site "London 1851"]
 [White "Adolf Anderssen"]
 [Black "Lionel Kieseritzky"]
@@ -1082,7 +1108,7 @@
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `escacs_${new Date().toISOString().slice(0,10)}.pgn`;
+            a.download = `chess_${new Date().toISOString().slice(0,10)}.pgn`;
             a.click();
             URL.revokeObjectURL(url);
         });
@@ -1110,7 +1136,7 @@
                     updateStatus();
                     if (game.turn() !== playerSide && !game.game_over()) makeAIMove();
                 } else {
-                    alert('Error carregant PGN');
+                    alert('Error loading PGN file');
                 }
             };
             reader.readAsText(file);
